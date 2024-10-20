@@ -1,0 +1,4 @@
+source ~/.config/omakub/defaults/bash/shell
+source ~/.config/omakub/defaults/bash/aliases
+source ~/.config/omakub/defaults/bash/prompt
+source ~/.config/omakub/defaults/bash/init

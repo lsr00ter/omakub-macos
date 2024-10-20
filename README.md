@@ -1,5 +1,7 @@
 # Omakub macOS
 
+**On working**
+
 A macOS-specific ripoff of DHH's [Omakub](https://github.com/basecamp/omakub/tree/master) for setting a system-wide look and feel.
 
 **Note:** This is a WIP. It doesn't install any apps, and assumes you're using iTerm and Neovim.
@@ -15,7 +17,7 @@ A macOS-specific ripoff of DHH's [Omakub](https://github.com/basecamp/omakub/tre
 
 Clone this repo to your local machine:
 ```sh
-git clone git@github.com:bweave/omakub-macos.git ~/src/omakub-macos
+git clone omakub-macos ~/.config/omakub
 ```
 If you want to put it somewhere else, be sure to update the `$OMAKUB_DIR` variable in the `omakub` script.
 
@@ -25,7 +27,7 @@ If you want to put it somewhere else, be sure to update the `$OMAKUB_DIR` variab
 
 Symlink the `omakub` script to somewhere in your $PATH:
 ```sh
-ln -s /path/to/omakub-macos /usr/local/bin/omakub # or some other directory in your $PATH
+ln -s ~/.config/omakub /usr/local/bin/omakub # or some other directory in your $PATH
 ```
 Run it:
 ```sh

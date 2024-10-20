@@ -1,0 +1,15 @@
+# History control
+shopt -s histappend
+HISTCONTROL=ignoreboth
+HISTSIZE=32768
+HISTFILESIZE="${HISTSIZE}"
+
+# Autocompletion
+# source /usr/share/bash-completion/bash_completion
+echo '[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"' >>~/.bash_profile
+
+# Set complete path
+export PATH="./bin:$HOME/.local/bin:$HOME/.config/omakub/bin:$PATH"
+set +h
+
+export OMAKUB_PATH="/home/$USER/.config/omakub"

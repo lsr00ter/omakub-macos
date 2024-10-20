@@ -1,0 +1,17 @@
+- hosts: localhost
+  connection: local
+  gather_facts: yes
+  sudo: no
+  roles:
+    - install.osx-defaults
+    - install.homebrew-packages
+    - install.homebrew-cask-packages
+    - install.osx-login-shell
+    - install.oh-my-zsh
+    - install.homebrew-path
+    - install.osx-go
+    - install.osx-vim
+    - install.osx-tmux
+    - install.osx-direnv
+    - install.osx-ruby
+    - install.osx-node-js
