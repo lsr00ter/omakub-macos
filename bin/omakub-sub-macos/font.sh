@@ -3,7 +3,15 @@
 install_font_via_brew() {
 	local font_name=$1
 	local brew_font_name=$2
-	local file_name="${font_name/ Nerd Font/}"
+	# Map font names to config file names
+	local file_name
+	case "$font_name" in
+		"Cascadia Nerd Font") file_name="CascadiaMono" ;;
+		"FiraMono Nerd Font") file_name="FiraMono" ;;
+		"JetBrainsMono Nerd Font") file_name="JetBrainsMono" ;;
+		"MesloLGS Nerd Font") file_name="MesloLGS" ;;
+		*) file_name="${font_name/ Nerd Font/}" ;;
+	esac
 
 	# Check if font is already installed using brew list
 	if brew list --cask "$brew_font_name" &>/dev/null; then

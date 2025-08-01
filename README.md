@@ -6,7 +6,7 @@ This is the macOS adaptation of Omakub - a shell script-based setup tool that tr
 
 ```bash
 # Bootstrap installation
-zsh <(curl -s https://raw.githubusercontent.com/lsr00ter/omakub-macos/master/boot-macos.sh)
+zsh <(curl -s https://raw.githubusercontent.com/lsr00ter/omakub-macos/macos/boot-macos.sh)
 
 # Or clone and run locally
 rm -rf ~/.local/share/omakub-macos
@@ -34,7 +34,7 @@ source ~/.local/share/omakub-macos/install-macos.sh
 ### Terminal Applications
 
 - **Neovim** - Modern vim-based editor with LazyVim
-- **Alacritty** - GPU-accelerated terminal emulator
+- **Alacritty** - GPU-accelerated terminal emulator with complete configuration setup (shared settings, pane management, theme integration, font configuration)
 - **btop** - System monitor
 - **fastfetch** - System information tool
 
@@ -53,8 +53,9 @@ source ~/.local/share/omakub-macos/install-macos.sh
 ### macOS Configurations
 
 - Dark mode enabled
-- Dock auto-hide and magnification
+- Dock auto-hide and magnification with proper XML plist configuration
 - Automatic cleanup of unwanted default dock apps (Messages, Maps, Photos, FaceTime, etc.)
+- Fixed font configuration system for proper terminal font rendering
 - Finder path bar and status bar
 - Improved keyboard repeat rates
 - Trackpad tap-to-click

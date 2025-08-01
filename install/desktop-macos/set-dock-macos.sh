@@ -33,19 +33,12 @@ done
 defaults write com.apple.dock persistent-apps -array
 
 # Add Finder back to dock (it's removed by the above command)
-defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="file-tile";"file-type"=1;"file-label"="Finder";"file-data"={"_CFURLString"="/System/Library/CoreServices/Finder.app/";"_CFURLStringType"=0;}}'
+# defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/System/Library/CoreServices/Finder.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
 
 # Add each installed app to the dock
 for app_path in "${installed_apps[@]}"; do
     defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$app_path</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
 done
 
-# # Configure dock preferences
-# defaults write com.apple.dock tilesize -int 48
-# defaults write com.apple.dock magnification -bool true
-# defaults write com.apple.dock largesize -int 64
-# defaults write com.apple.dock autohide -bool false
-# defaults write com.apple.dock orientation -string "bottom"
-
-# # Restart dock to apply changes
-# killall Dock
+# Restart dock to apply changes
+killall Dock
