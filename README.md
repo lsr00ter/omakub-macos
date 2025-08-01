@@ -247,7 +247,7 @@ brew install --verbose package-name
 
 | File | Key macOS Adaptations |
 |------|----------------------|
-| **alacritty/shared.toml** | • Homebrew zellij path `/opt/homebrew/bin/zellij`<br>• Native window decorations `buttonless`<br>• macOS-specific window settings and blur |
+| **alacritty/shared.toml** | • Architecture-aware zellij path (auto-detects Intel vs Apple Silicon)<br>• Native window decorations `buttonless`<br>• macOS-specific window settings and blur |
 | **btop.conf** | • Simplified boolean values (`true`/`false` vs `True`/`False`)<br>• Removed Linux-specific GPU and kernel options |
 | **fastfetch.jsonc** | • Mac icon and macOS-specific detection<br>• Proper macOS age calculation using `system_profiler`<br>• Removed Desktop Environment detection |
 | **vscode.json** | • macOS font stack with SF Mono fallbacks<br>• Enhanced UI preferences for macOS<br>• Proper font ligatures and line height |

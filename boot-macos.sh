@@ -37,7 +37,7 @@ fi
 echo "Cloning Omakub for macOS..."
 rm -rf ~/.local/share/omakub-macos
 mkdir -p ~/.local/share
-git clone https://github.com/lsr00ter/omakub-macos.git ~/.local/share/omakub-macos >/dev/null
+git clone https://github.com/lsr00ter/omakub-macos.git --depth=1 ~/.local/share/omakub-macos >/dev/null
 
 echo "Installation starting..."
 source ~/.local/share/omakub-macos/install-macos.sh

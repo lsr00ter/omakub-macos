@@ -1,5 +1,5 @@
 [shell]
-program = "/opt/homebrew/bin/zellij"
+program = "/usr/local/bin/zellij"
 args = [
     "--layout",
     "compact",
