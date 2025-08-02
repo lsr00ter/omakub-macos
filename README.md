@@ -2,6 +2,8 @@
 
 This is the macOS adaptation of Omakub - a shell script-based setup tool that transforms a fresh macOS installation into a fully-configured development environment.
 
+<img width="3840" height="2160" alt="screenshot" src="https://github.com/user-attachments/assets/fe645017-8d26-411e-a6f9-d97b6ada04d0" />
+
 ## Quick Start
 
 ```bash
@@ -11,8 +13,7 @@ zsh <(curl -s https://raw.githubusercontent.com/lsr00ter/omakub-macos/macos/boot
 # Or clone and run locally
 rm -rf ~/.local/share/omakub-macos
 mkdir -p ~/.local/share
-git clone https://github.com/lsr00ter/omakub-macos.git ~/.local/share/omakub-macos >/dev/null
-cd omakub-macos
+git clone https://github.com/lsr00ter/omakub-macos.git ~/.local/share/omakub-macos --depth=1 >/dev/null
 source ~/.local/share/omakub-macos/install-macos.sh
 ```
 
@@ -32,14 +33,6 @@ source ~/.local/share/omakub-macos/bin/omakub-sub-macos/font.sh
 - Intel or Apple Silicon Mac (Intel Macs fully supported)
 - Internet connection
 - Administrator privileges
-
-### Architecture Detection
-
-The system automatically detects Mac architecture and configures paths accordingly:
-
-- **Apple Silicon**: Uses `/opt/homebrew`
-- **Intel**: Uses `/usr/local`
-- **Environment**: `HOMEBREW_PREFIX` and `OMAKUB_ARCH` variables set automatically
 
 ## What Gets Installed
 
@@ -95,13 +88,13 @@ install/
 ├── terminal-macos.sh          # Terminal app orchestrator
 ├── desktop-macos.sh           # Desktop app orchestrator
 ├── terminal-macos/*.sh        # Individual terminal installers
+├── terminal-macos/optional/   # Optional terminal app installers
 ├── desktop-macos/*.sh         # Individual desktop installers
-└── desktop-macos/optional/    # Optional app installers
+└── desktop-macos/optional/    # Optional desktop app installers
 ```
 
 ### Configuration Management
 
-- **`configs/`** - Original Ubuntu configuration templates
 - **`configs-macos/`** - macOS-adapted configurations with platform-specific paths and settings
 - **Key differences**: Homebrew paths, macOS-specific window decorations, font families, system preferences
 
