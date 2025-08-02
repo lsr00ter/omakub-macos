@@ -16,7 +16,6 @@ cp ~/.local/share/omakub-macos/configs-macos/alacritty/fonts/CascadiaMono.toml ~
 cp ~/.local/share/omakub-macos/configs-macos/alacritty/font-size.toml ~/.config/alacritty/font-size.toml
 
 # Fix zellij path based on architecture
-source ~/.local/share/omakub-macos/install/check-version-macos.sh
 sed -i '' "s|/usr/local/bin/zellij|${HOMEBREW_PREFIX}/bin/zellij|g" ~/.config/alacritty/shared.toml
 
 # Migrate config format if needed

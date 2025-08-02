@@ -7,7 +7,7 @@ source ~/.local/share/omakub-macos/install/terminal-macos/libraries-macos.sh
 
 # Install popular programming fonts directly (no tap needed)
 install_app_via_brew "font-fira-code" "--cask"
-install_app_via_brew "font-cascadia-mono" "--cask"  
+install_app_via_brew "font-cascadia-mono" "--cask"
 install_app_via_brew "font-jetbrains-mono" "--cask"
 install_app_via_brew "font-meslo-lg-nerd-font" "--cask"
 
@@ -25,4 +25,4 @@ echo "   - Source Code Pro"
 echo "   - Hack"
 echo ""
 echo "These fonts are now available in all applications"
-echo "Recommended for terminal: CaskaydiaMono Nerd Font or JetBrains Mono"
+echo "Recommended for terminal: Cascadia Mono or JetBrains Mono"

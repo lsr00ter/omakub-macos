@@ -3,7 +3,7 @@
 function install_app_via_brew() {
     local app_name="$1"
     local cask_flag="$2"
-    
+
     if [[ "$cask_flag" == "--cask" ]]; then
         echo "Installing $app_name via Homebrew Cask..."
         if brew install --cask "$app_name"; then
@@ -27,7 +27,7 @@ function ensure_homebrew() {
     if ! command -v brew &> /dev/null; then
         echo "Homebrew not found. Installing..."
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        
+
         # Set up Homebrew environment
         if [[ $(uname -m) == "arm64" ]]; then
             eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -35,16 +35,16 @@ function ensure_homebrew() {
             eval "$(/usr/local/bin/brew shellenv)"
         fi
     fi
-    
+
     echo "Updating Homebrew..."
     brew update
 }
 
 function install_macos_libraries() {
     ensure_homebrew
-    
+
     echo "Installing development libraries..."
-    
+
     # Core build tools (equivalent to build-essential)
     brew install \
         autoconf \
@@ -52,8 +52,9 @@ function install_macos_libraries() {
         bison \
         llvm \
         cmake \
-        make
-        
+        make \
+        coreutils
+
     # SSL and crypto libraries
     brew install \
         openssl@3 \
@@ -61,19 +62,19 @@ function install_macos_libraries() {
         zlib \
         libyaml \
         libffi
-        
+
     # Database tools and libraries
     brew install \
-        sqlite3 \
-        mysql-client \
-        postgresql@16 \
-        redis
-        
+        sqlite3
+        # mysql-client
+        # postgresql@16 \
+        # redis
+
     # Image processing libraries (equivalent to libvips, imagemagick)
     brew install \
         vips \
         imagemagick
-        
+
     # Additional development libraries
     brew install \
         libxml2 \
@@ -82,14 +83,14 @@ function install_macos_libraries() {
         zstd \
         lz4 \
         xz
-        
+
     # Compression and archive tools
     brew install \
         gzip \
         bzip2 \
         unzip \
         zip
-        
+
     # Version control and text processing
     brew install \
         git \
@@ -97,7 +98,7 @@ function install_macos_libraries() {
         wget \
         jq \
         yq
-        
+
     # Development utilities
     brew install \
         tree \
@@ -107,14 +108,14 @@ function install_macos_libraries() {
         eza \
         fzf \
         zoxide
-        
+
     # Optional: Install Rust if not present (some tools depend on it)
     if ! command -v rustc &> /dev/null; then
         echo "Installing Rust toolchain..."
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
         source "$HOME/.cargo/env"
     fi
-        
+
     echo "✓ Development libraries installed"
     echo ""
     echo "📝 Note: Some libraries may require additional configuration:"

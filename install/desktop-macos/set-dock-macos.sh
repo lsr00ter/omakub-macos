@@ -1,5 +1,11 @@
 #!/bin/zsh
 
+# Ensure dockutil is installed
+if ! command -v dockutil &> /dev/null; then
+    echo "dockutil not found. Please install it first by running: brew install dockutil"
+    exit 1
+fi
+
 # Favorite apps for dock
 apps=(
 	"Google Chrome"
@@ -10,35 +16,24 @@ apps=(
 	"Zoom"
 	"Spotify"
 	"Steam"
-	"Pinta"
 	"Obsidian"
-	"Activity Monitor"
 	"1Password"
-	"LocalSend"
 )
 
-# Array to hold installed favorite apps
-installed_apps=()
-
-# Check if applications are installed and get their paths
+# Add each application to the dock
 for app in "${apps[@]}"; do
+    # Check for the app in the main Applications folder
     if [ -d "/Applications/$app.app" ]; then
-        installed_apps+=("/Applications/$app.app")
+        dockutil --add "/Applications/$app.app" --replacing "$app" --no-restart
+        echo "Added $app to the Dock."
+    # Check for the app in the user's Applications folder
     elif [ -d "$HOME/Applications/$app.app" ]; then
-        installed_apps+=("$HOME/Applications/$app.app")
+        dockutil --add "$HOME/Applications/$app.app" --replacing "$app" --no-restart
+        echo "Added $app to the Dock."
+    else
+        echo "Warning: $app not found. Skipping."
     fi
 done
 
-# Clear existing dock (remove all apps except Finder and Trash)
-defaults write com.apple.dock persistent-apps -array
-
-# Add Finder back to dock (it's removed by the above command)
-# defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/System/Library/CoreServices/Finder.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
-
-# Add each installed app to the dock
-for app_path in "${installed_apps[@]}"; do
-    defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$app_path</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
-done
-
 # Restart dock to apply changes
-killall Dock
+killall Dock || true

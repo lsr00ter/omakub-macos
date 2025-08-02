@@ -10,9 +10,6 @@ defaults write NSGlobalDomain AppleAccentColor -int 5
 # Set macOS to dark mode
 osascript -e "tell application \"System Events\" to tell appearance preferences to set dark mode to true"
 
-# Set reduce transparency for better readability
-defaults write com.apple.universalaccess reduceTransparency -bool true
-
 # Set desktop wallpaper to Catppuccin background
 if [ -f "$THEME_DIR/background.png" ]; then
     # Method 1: Try using System Events (more reliable)
@@ -22,7 +19,7 @@ if [ -f "$THEME_DIR/background.png" ]; then
             set picture to \"$THEME_DIR/background.png\"
         end tell
     end tell" 2>/dev/null
-    
+
     if [ $? -eq 0 ]; then
         echo "Desktop wallpaper set to Catppuccin background"
     else

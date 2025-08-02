@@ -21,7 +21,7 @@ else
 
 	case "$INSTALLER" in
 	"omakub") INSTALLER_FILE="$OMAKUB_PATH/bin/omakub-sub-macos/migrate.sh" ;;
-	"homebrew") 
+	"homebrew")
 		echo "Updating Homebrew..."
 		brew update && brew upgrade && brew cleanup
 		gum spin --spinner globe --title "Homebrew update completed!" -- sleep 3
@@ -36,4 +36,4 @@ else
 fi
 
 clear
-source $OMAKUB_PATH/bin/omakub-macos
+source $OMAKUB_PATH/bin/omakin

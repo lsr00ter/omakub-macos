@@ -90,7 +90,7 @@ omakub theme
 ### macOS
 
 ```bash
-omakub-macos theme
+omakin theme
 ```
 
 Both commands provide the same theme selection but apply platform-appropriate configurations.

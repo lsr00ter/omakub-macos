@@ -62,7 +62,7 @@ web2app() {
     <key>CFBundleIconFile</key>
     <string>${APP_NAME}.png</string>
     <key>CFBundleIdentifier</key>
-    <string>com.omakub.${APP_NAME:l}</string>
+    <string>com.omakub.${(L)APP_NAME}</string>
     <key>CFBundleName</key>
     <string>${APP_NAME}</string>
     <key>CFBundlePackageType</key>
@@ -94,7 +94,7 @@ web2app-remove() {
 
   local APP_NAME="$1"
   local APP_DIR="/Applications/${APP_NAME}.app"
-  
+
   if [ -d "$APP_DIR" ]; then
     rm -rf "$APP_DIR"
     echo "Removed ${APP_NAME}.app"
@@ -109,15 +109,15 @@ app2dock() {
     echo "Usage: app2dock <AppName>"
     return 1
   fi
-  
+
   local APP_NAME="$1"
   local APP_PATH="/Applications/${APP_NAME}.app"
-  
+
   if [ ! -d "$APP_PATH" ]; then
     echo "App not found: $APP_PATH"
     return 1
   fi
-  
+
   defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$APP_PATH</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
   killall Dock
 }
@@ -128,7 +128,7 @@ app2dock-remove() {
     echo "Usage: app2dock-remove <AppName>"
     return 1
   fi
-  
+
   local APP_NAME="$1"
   # This is complex in macOS, recommend using Dock preferences
   echo "To remove $APP_NAME from Dock, drag it out of the Dock manually"
@@ -189,12 +189,12 @@ backup() {
     echo "Usage: backup <source> <destination>"
     return 1
   fi
-  
+
   local source="$1"
   local dest="$2"
   local timestamp=$(date +"%Y%m%d_%H%M%S")
   local backup_name="backup_${timestamp}"
-  
+
   rsync -av --progress "$source" "${dest}/${backup_name}"
   echo "Backup completed: ${dest}/${backup_name}"
 }

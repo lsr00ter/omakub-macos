@@ -29,4 +29,4 @@ source ~/.local/share/omakub-macos/install/desktop-macos.sh
 
 echo "$(tput setaf 2)Installation completed successfully!"
 echo "$(tput setaf 3)You may need to restart some applications for all changes to take effect."
-echo "$(tput setaf 6)Run 'omakub-macos' to access post-installation configuration options."
+echo "$(tput setaf 6)Run 'omakin' to access post-installation configuration options."

@@ -3,7 +3,7 @@
 # Load macOS functions for web app creation
 source ~/.local/share/omakub-macos/defaults/zsh/functions
 
-AVAILABLE_WEB_APPS=("Chat GPT" "Google Photos" "Google Contacts" "Tailscale")
+AVAILABLE_WEB_APPS=("Chat GPT" "Google Photos" "Google Contacts")
 
 echo "Available web apps to install:"
 for i in "${!AVAILABLE_WEB_APPS[@]}"; do
@@ -40,10 +40,6 @@ if [[ ${#apps[@]} -gt 0 ]]; then
         "Google Contacts")
             web2app 'Google Contacts' https://contacts.google.com/ https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/google-contacts.png
             app2dock 'Google Contacts'
-            ;;
-        "Tailscale")
-            web2app 'Tailscale' https://login.tailscale.com/admin/ https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/tailscale-light.png
-            app2dock 'Tailscale'
             ;;
         esac
     done

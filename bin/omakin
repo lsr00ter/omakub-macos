@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+# Set OMAKUB_PATH for macOS
+export OMAKUB_PATH="$HOME/.local/share/omakub-macos"
+
+source $OMAKUB_PATH/bin/omakub-sub-macos/header.sh
+source $OMAKUB_PATH/bin/omakub-sub-macos/menu.sh

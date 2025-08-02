@@ -22,6 +22,8 @@ CHOICES=(
   "Windsurf          AI-powered development environment"
   "Zed               High-performance code editor"
   "Zoom              Attend and host video chat meetings"
+  "Signal            Secure messaging app"
+  "Tailscale         Connect your devices to a Tailscale network"
   "Web Apps          Install web apps with their own icon and shell"
   "> All             Re-run any of the default installers"
   "<< Back           "
@@ -45,9 +47,9 @@ else
   case "$INSTALLER" in
   "dev-editor") INSTALLER_FILE="$OMAKUB_PATH/bin/omakub-sub-macos/install-dev-editor.sh" ;;
   "web-apps") INSTALLER_FILE="$OMAKUB_PATH/install/desktop-macos/optional/select-web-apps-macos.sh" ;;
-  "dev-language") INSTALLER_FILE="$OMAKUB_PATH/install/terminal-macos/select-dev-language.sh" ;;
-  "dev-database") INSTALLER_FILE="$OMAKUB_PATH/install/terminal-macos/select-dev-storage.sh" ;;
-  "ollama") INSTALLER_FILE="$OMAKUB_PATH/install/terminal-macos/optional/app-ollama.sh" ;;
+  "dev-language") INSTALLER_FILE="$OMAKUB_PATH/install/terminal-macos/select-dev-language-macos.sh" ;;
+  "dev-database") INSTALLER_FILE="$OMAKUB_PATH/install/terminal-macos/select-dev-storage-macos.sh" ;;
+  "ollama") INSTALLER_FILE="$OMAKUB_PATH/install/terminal-macos/optional/app-ollama-macos.sh" ;;
   "1password") INSTALLER_FILE="$OMAKUB_PATH/install/desktop-macos/optional/app-1password-macos.sh" ;;
   "parallels-desktop") INSTALLER_FILE="$OMAKUB_PATH/install/desktop-macos/optional/app-parallels-macos.sh" ;;
   "rubymine") INSTALLER_FILE="$OMAKUB_PATH/install/desktop-macos/optional/app-rubymine-macos.sh" ;;
@@ -67,4 +69,4 @@ else
 fi
 
 clear
-source $OMAKUB_PATH/bin/omakub-macos
+source $OMAKUB_PATH/bin/omakin
