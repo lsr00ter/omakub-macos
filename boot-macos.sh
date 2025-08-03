@@ -28,11 +28,7 @@ if ! command -v brew &> /dev/null; then
     fi
 fi
 
-# Install git if not present
-if ! command -v git &> /dev/null; then
-    echo "Installing git..."
-    brew install git
-fi
+brew install git >/dev/null
 
 echo "Cloning Omakub for macOS..."
 rm -rf ~/.local/share/omakub-macos

@@ -63,7 +63,7 @@ else
 		echo "Manual configuration options selected: $CHOICE"
 		;;
 	esac
-	
+
 	echo ""
 	echo "Press any key to continue..."
 	read -k1

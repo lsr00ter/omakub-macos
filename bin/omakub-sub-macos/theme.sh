@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 THEME_NAMES=("Tokyo Night" "Catppuccin" "Nord" "Everforest" "Gruvbox" "Kanagawa" "Rose Pine")
-THEME=$(gum choose "${THEME_NAMES[@]}" "<< Back" --header "Choose your theme" --height 10 | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
+THEME=$(gum choose "${THEME_NAMES[@]}" "<< Back" --header "Choose your theme" --height 12 | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
 
 if [ -n "$THEME" ] && [ "$THEME" != "<<-back" ]; then
   # Create necessary config directories
@@ -36,11 +36,6 @@ if [ -n "$THEME" ] && [ "$THEME" != "<<-back" ]; then
   # Forgo setting the Chrome theme until we might find a less disruptive way of doing it.
   # Having to quit Chrome, and all Chrome-based apps, is too much of an inposition.
   # source $OMAKUB_PATH/themes/$THEME/chrome.sh
-  # Note: Ubuntu-specific scripts are intentionally skipped on macOS:
-  # - gnome.sh (GNOME desktop theming - not applicable)
-  # - tophat.sh (Linux-specific GNOME extension - not applicable)
-  # - chrome.sh (uses Linux-specific approaches - not applicable)
-  # - vscode.sh (uses Linux paths - replaced with vscode-macos.sh)
 fi
 
 source $OMAKUB_PATH/bin/omakub-sub-macos/menu.sh

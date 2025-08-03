@@ -17,26 +17,19 @@ install_font_via_brew() {
 	if brew list --cask "$brew_font_name" &>/dev/null; then
 		echo "Font '$font_name' is already installed."
 	else
-		echo "Installing '$font_name' via Homebrew..."
 		brew install --cask "$brew_font_name"
 		clear
 		source $OMAKUB_PATH/ascii-macos.sh
-		echo "Font '$font_name' installed successfully!"
 	fi
 
 	# Update Alacritty font config (same structure as Ubuntu)
 	mkdir -p ~/.config/alacritty
-	cp "$OMAKUB_PATH/configs-macos/alacritty/fonts/$file_name.toml" ~/.config/alacritty/font.toml 2>/dev/null || {
-		echo "Font config not found, using default Alacritty font configuration"
-	}
-
+	cp "$OMAKUB_PATH/configs-macos/alacritty/fonts/$file_name.toml" ~/.config/alacritty/font.toml
 	# Update VSCode font (macOS path is different)
 	local vscode_settings="$HOME/Library/Application Support/Code/User/settings.json"
 	if [ -f "$vscode_settings" ]; then
 		sed -i '' "s/\"editor.fontFamily\": \".*\"/\"editor.fontFamily\": \"$font_name\"/g" "$vscode_settings"
 	fi
-
-	echo "Font settings updated for Alacritty and VSCode"
 }
 
 if [ "$#" -gt 1 ]; then

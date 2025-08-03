@@ -10,12 +10,7 @@ echo "Installing terminal applications..."
 
 # Run terminal app installers
 for installer in ~/.local/share/omakub-macos/install/terminal-macos/*.sh; do
-    if [[ -f "$installer" && "$(basename "$installer")" != "libraries-macos.sh" \
-    && "$(basename "$installer")" != "select-dev-language-macos.sh" \
-    && "$(basename "$installer")" != "select-dev-storage-macos.sh" ]]; then
-        echo "Running $(basename "$installer")..."
+    if [[ -f "$installer" && "$(basename "$installer")" != "libraries-macos.sh" ]]; then
         source "$installer"
     fi
 done
-
-echo "✓ Terminal installation completed"

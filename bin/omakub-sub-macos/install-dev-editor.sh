@@ -19,7 +19,7 @@ else
   EDITOR=$(echo "$CHOICE" | awk -F ' {2,}' '{print $1}' | tr '[:upper:]' '[:lower:]')
 
   case "$EDITOR" in
-  "cursor") 
+  "cursor")
     echo "Installing Cursor..."
     brew install --cask cursor
     ;;
@@ -44,7 +44,7 @@ else
     brew install --cask intellij-idea
     ;;
   esac
-  
+
   echo "$EDITOR installation completed!"
 fi
 

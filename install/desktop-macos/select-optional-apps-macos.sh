@@ -9,7 +9,7 @@ if [[ -v OMAKUB_FIRST_RUN_OPTIONAL_APPS ]]; then
 	if [[ -n "$apps" ]]; then
 		# Convert newline-separated string to array using zsh parameter expansion
 		local app_array=("${(@f)apps}")
-		
+
 		for app in "${app_array[@]}"; do
 			# Skip empty lines and trim whitespace
 			app=$(echo "$app" | xargs)

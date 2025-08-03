@@ -5,7 +5,7 @@ echo "Installing gum for interactive prompts..."
 
 # Use the libraries functions for consistency
 source ~/.local/share/omakub-macos/install/terminal-macos/libraries-macos.sh
-
+ensure_homebrew
 if ! command -v gum &> /dev/null; then
     install_app_via_brew "gum"
     echo "✓ gum installed successfully"
