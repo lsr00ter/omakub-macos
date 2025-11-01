@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+# Source brew helpers
+source ~/.local/share/omakub-macos/install/terminal-macos/brew-helpers.sh
+
 EDITORS=(
   "Cursor        AI-powered code editor by Anysphere"
   "Zed           High-performance editor by Zed Industries"
@@ -21,27 +24,27 @@ else
   case "$EDITOR" in
   "cursor")
     echo "Installing Cursor..."
-    brew install --cask cursor
+    brew_install_cask cursor
     ;;
   "zed")
     echo "Installing Zed..."
-    brew install --cask zed
+    brew_install_cask zed
     ;;
   "windsurf")
     echo "Installing Windsurf..."
-    brew install --cask windsurf
+    brew_install_cask windsurf
     ;;
   "rubymine")
     echo "Installing RubyMine..."
-    brew install --cask rubymine
+    brew_install_cask rubymine
     ;;
   "webstorm")
     echo "Installing WebStorm..."
-    brew install --cask webstorm
+    brew_install_cask webstorm
     ;;
   "intellij")
     echo "Installing IntelliJ IDEA..."
-    brew install --cask intellij-idea
+    brew_install_cask intellij-idea
     ;;
   esac
 

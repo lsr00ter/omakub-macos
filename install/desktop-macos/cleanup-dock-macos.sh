@@ -70,12 +70,24 @@ function remove_app_from_dock_defaults() {
 function install_dockutil() {
     echo "  Installing dockutil for dock management..."
 
+    # Source brew helpers
+    if [[ -f ~/.local/share/omakub-macos/install/terminal-macos/brew-helpers.sh ]]; then
+        source ~/.local/share/omakub-macos/install/terminal-macos/brew-helpers.sh
+    fi
+
     # Check if Homebrew is available
     if command -v brew &> /dev/null; then
-        brew install dockutil 2>/dev/null || {
-            echo "    Failed to install dockutil via Homebrew, using manual method"
-            install_dockutil_manual
-        }
+        if type safe_brew &>/dev/null; then
+            safe_brew install dockutil 2>/dev/null || {
+                echo "    Failed to install dockutil via Homebrew, using manual method"
+                install_dockutil_manual
+            }
+        else
+            brew install dockutil 2>/dev/null || {
+                echo "    Failed to install dockutil via Homebrew, using manual method"
+                install_dockutil_manual
+            }
+        fi
     else
         install_dockutil_manual
     fi

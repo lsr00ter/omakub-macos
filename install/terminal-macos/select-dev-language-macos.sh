@@ -29,10 +29,12 @@ if [[ -n "$languages" ]]; then
         mise use --global go@latest
         ;;
       "PHP")
+        # Source brew helpers
+        source ~/.local/share/omakub-macos/install/terminal-macos/brew-helpers.sh
         # Install PHP via Homebrew for macOS
-        brew install php composer
+        safe_brew install php composer
         # Install common PHP extensions available on macOS
-        brew install php-redis
+        safe_brew install php-redis
         echo "✓ PHP and Composer installed via Homebrew"
         echo "💡 Additional extensions may need manual installation"
         ;;

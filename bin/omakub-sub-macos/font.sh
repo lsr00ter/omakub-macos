@@ -1,6 +1,9 @@
 #!/bin/zsh
 
 install_font_via_brew() {
+	# Source brew helpers
+	source ~/.local/share/omakub-macos/install/terminal-macos/brew-helpers.sh
+
 	local font_name=$1
 	local brew_font_name=$2
 	# Map font names to config file names
@@ -14,10 +17,10 @@ install_font_via_brew() {
 	esac
 
 	# Check if font is already installed using brew list
-	if brew list --cask "$brew_font_name" &>/dev/null; then
+	if safe_brew list --cask "$brew_font_name" &>/dev/null; then
 		echo "Font '$font_name' is already installed."
 	else
-		brew install --cask "$brew_font_name"
+		brew_install_cask "$brew_font_name"
 		clear
 		source $OMAKUB_PATH/ascii-macos.sh
 	fi

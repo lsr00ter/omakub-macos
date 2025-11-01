@@ -15,20 +15,15 @@ echo -e "$ascii_art"
 echo "=> Omakub for macOS - Designed for macOS 14+ (Sonoma) installations!"
 echo -e "\nBegin installation (or abort with ctrl+c)..."
 
-# Check if Homebrew is installed, install if not
-if ! command -v brew &> /dev/null; then
-    echo "Installing Homebrew..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# Download and source brew helpers to handle architecture issues
+curl -fsSL https://raw.githubusercontent.com/lsr00ter/omakub-macos/macos/install/terminal-macos/brew-helpers.sh -o /tmp/brew-helpers.sh
+source /tmp/brew-helpers.sh
 
-    # Set up Homebrew environment based on architecture
-    if [[ $(uname -m) == "arm64" ]]; then
-        eval "$(/opt/homebrew/bin/brew shellenv)"
-    else
-        eval "$(/usr/local/bin/brew shellenv)"
-    fi
-fi
+# Ensure Homebrew is installed with correct architecture
+ensure_homebrew
 
-brew install git >/dev/null
+# Install git using safe_brew wrapper
+safe_brew install git >/dev/null
 
 echo "Cloning Omakub for macOS..."
 rm -rf ~/.local/share/omakub-macos

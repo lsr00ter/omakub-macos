@@ -1,12 +1,23 @@
 #!/bin/zsh
 
+# Source brew helpers for architecture-safe operations
+BREW_HELPERS="${BASH_SOURCE[0]%/*}/brew-helpers.sh"
+if [[ -f "$BREW_HELPERS" ]]; then
+    source "$BREW_HELPERS"
+elif [[ -f ~/.local/share/omakub-macos/install/terminal-macos/brew-helpers.sh ]]; then
+    source ~/.local/share/omakub-macos/install/terminal-macos/brew-helpers.sh
+else
+    echo "Error: brew-helpers.sh not found"
+    exit 1
+fi
+
 function install_app_via_brew() {
     local app_name="$1"
     local cask_flag="$2"
 
     if [[ "$cask_flag" == "--cask" ]]; then
         echo "Installing $app_name via Homebrew Cask..."
-        if brew install --cask "$app_name"; then
+        if brew_install_cask "$app_name"; then
             echo "✓ Successfully installed $app_name"
         else
             echo "✗ Failed to install $app_name"
@@ -14,30 +25,13 @@ function install_app_via_brew() {
         fi
     else
         echo "Installing $app_name via Homebrew..."
-        if brew install "$app_name"; then
+        if brew_install "$app_name"; then
             echo "✓ Successfully installed $app_name"
         else
             echo "✗ Failed to install $app_name"
             return 1
         fi
     fi
-}
-
-function ensure_homebrew() {
-    if ! command -v brew &> /dev/null; then
-        echo "Homebrew not found. Installing..."
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-        # Set up Homebrew environment
-        if [[ $(uname -m) == "arm64" ]]; then
-            eval "$(/opt/homebrew/bin/brew shellenv)"
-        else
-            eval "$(/usr/local/bin/brew shellenv)"
-        fi
-    fi
-
-    echo "Updating Homebrew..."
-    brew update
 }
 
 function install_macos_libraries() {
@@ -46,7 +40,7 @@ function install_macos_libraries() {
     echo "Installing development libraries..."
 
     # Core build tools (equivalent to build-essential)
-    brew install \
+    safe_brew install \
         autoconf \
         pkg-config \
         bison \
@@ -56,7 +50,7 @@ function install_macos_libraries() {
         coreutils
 
     # SSL and crypto libraries
-    brew install \
+    safe_brew install \
         openssl@3 \
         readline \
         zlib \
@@ -64,19 +58,19 @@ function install_macos_libraries() {
         libffi
 
     # Database tools and libraries
-    brew install \
+    safe_brew install \
         sqlite3
         # mysql-client
         # postgresql@16 \
         # redis
 
     # Image processing libraries (equivalent to libvips, imagemagick)
-    brew install \
+    safe_brew install \
         vips \
         imagemagick
 
     # Additional development libraries
-    brew install \
+    safe_brew install \
         libxml2 \
         libxslt \
         libiconv \
@@ -85,14 +79,14 @@ function install_macos_libraries() {
         xz
 
     # Compression and archive tools
-    brew install \
+    safe_brew install \
         gzip \
         bzip2 \
         unzip \
         zip
 
     # Version control and text processing
-    brew install \
+    safe_brew install \
         git \
         curl \
         wget \
@@ -100,7 +94,7 @@ function install_macos_libraries() {
         yq
 
     # Development utilities
-    brew install \
+    safe_brew install \
         tree \
         ripgrep \
         fd \

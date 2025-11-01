@@ -5,9 +5,9 @@ echo "Installing Neovim..."
 
 source ~/.local/share/omakub-macos/install/terminal-macos/libraries-macos.sh
 
-# Install neovim and dependencies
-brew install neovim
-brew install luarocks tree-sitter
+# Install neovim and dependencies using safe_brew
+safe_brew install neovim
+safe_brew install luarocks tree-sitter
 
 # LazyVim setup (same as Ubuntu)
 if [ ! -d "$HOME/.config/nvim" ]; then
