@@ -18,9 +18,28 @@ if [[ -n "$languages" ]]; then
     if [[ -n "$language" ]]; then
       case $language in
       "Ruby on Rails")
-        mise use --global ruby@latest
-        mise settings add idiomatic_version_file_enable_tools ruby
-        mise x ruby -- gem install rails --no-document
+        echo "📦 Installing Ruby (this may take 5-10 minutes)..."
+
+        # Set up build environment for Ruby compilation on macOS
+        export HOMEBREW_PREFIX=$(brew --prefix)
+        export PKG_CONFIG_PATH="$HOMEBREW_PREFIX/opt/openssl@3/lib/pkgconfig:$HOMEBREW_PREFIX/opt/readline/lib/pkgconfig:$HOMEBREW_PREFIX/opt/libyaml/lib/pkgconfig:$HOMEBREW_PREFIX/opt/libffi/lib/pkgconfig:$PKG_CONFIG_PATH"
+        export LDFLAGS="-L$HOMEBREW_PREFIX/opt/openssl@3/lib -L$HOMEBREW_PREFIX/opt/readline/lib -L$HOMEBREW_PREFIX/opt/libyaml/lib -L$HOMEBREW_PREFIX/opt/libffi/lib"
+        export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/openssl@3/include -I$HOMEBREW_PREFIX/opt/readline/include -I$HOMEBREW_PREFIX/opt/libyaml/include -I$HOMEBREW_PREFIX/opt/libffi/include"
+        export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$HOMEBREW_PREFIX/opt/openssl@3 --with-readline-dir=$HOMEBREW_PREFIX/opt/readline --with-libyaml-dir=$HOMEBREW_PREFIX/opt/libyaml"
+
+        if mise use --global ruby@latest; then
+          mise settings add idiomatic_version_file_enable_tools ruby
+          echo "💎 Installing Rails..."
+          if mise x ruby -- gem install rails --no-document; then
+            echo "✓ Ruby on Rails installed successfully"
+          else
+            echo "⚠️  Warning: Rails installation failed, but Ruby is installed"
+          fi
+        else
+          echo "❌ Error: Ruby installation failed"
+          echo "💡 Try manually: export RUBY_CONFIGURE_OPTS=\"--with-openssl-dir=\$(brew --prefix openssl@3)\""
+          echo "💡 Then run: mise use --global ruby@latest"
+        fi
         ;;
       "Node.js")
         mise use --global node@lts
