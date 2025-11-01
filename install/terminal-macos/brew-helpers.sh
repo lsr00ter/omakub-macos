@@ -4,6 +4,12 @@
 # Ensures brew commands run under the correct architecture to avoid Rosetta 2 issues
 # Reference: https://github.com/orgs/Homebrew/discussions/2434
 
+# Prevent duplicate loading
+if [[ -n "$BREW_HELPERS_LOADED" ]]; then
+    return 0
+fi
+export BREW_HELPERS_LOADED=1
+
 # Detect system architecture
 function get_arch() {
     uname -m
