@@ -20,24 +20,36 @@ if [[ -n "$languages" ]]; then
       "Ruby on Rails")
         echo "📦 Installing Ruby (this may take 5-10 minutes)..."
 
+        # Detect if running under Rosetta 2
+        CURRENT_ARCH=$(uname -m)
+        ROSETTA_CHECK=$(sysctl -n sysctl.proc_translated 2>/dev/null || echo 0)
+
+        if [[ "$CURRENT_ARCH" == "x86_64" ]] && [[ "$ROSETTA_CHECK" == "1" ]]; then
+          echo "⚠️  Detected Rosetta 2 environment. Switching to ARM64 for Ruby compilation..."
+          MISE_CMD="arch -arm64 mise"
+        else
+          MISE_CMD="mise"
+        fi
+
         # Set up build environment for Ruby compilation on macOS
-        export HOMEBREW_PREFIX=$(brew --prefix)
+        export HOMEBREW_PREFIX=$(/opt/homebrew/bin/brew --prefix 2>/dev/null || /usr/local/bin/brew --prefix)
         export PKG_CONFIG_PATH="$HOMEBREW_PREFIX/opt/openssl@3/lib/pkgconfig:$HOMEBREW_PREFIX/opt/readline/lib/pkgconfig:$HOMEBREW_PREFIX/opt/libyaml/lib/pkgconfig:$HOMEBREW_PREFIX/opt/libffi/lib/pkgconfig:$PKG_CONFIG_PATH"
         export LDFLAGS="-L$HOMEBREW_PREFIX/opt/openssl@3/lib -L$HOMEBREW_PREFIX/opt/readline/lib -L$HOMEBREW_PREFIX/opt/libyaml/lib -L$HOMEBREW_PREFIX/opt/libffi/lib"
         export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/openssl@3/include -I$HOMEBREW_PREFIX/opt/readline/include -I$HOMEBREW_PREFIX/opt/libyaml/include -I$HOMEBREW_PREFIX/opt/libffi/include"
         export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$HOMEBREW_PREFIX/opt/openssl@3 --with-readline-dir=$HOMEBREW_PREFIX/opt/readline --with-libyaml-dir=$HOMEBREW_PREFIX/opt/libyaml"
 
-        if mise use --global ruby@latest; then
-          mise settings add idiomatic_version_file_enable_tools ruby
+        if $MISE_CMD use --global ruby@latest; then
+          $MISE_CMD settings add idiomatic_version_file_enable_tools ruby
           echo "💎 Installing Rails..."
-          if mise x ruby -- gem install rails --no-document; then
+          if $MISE_CMD x ruby -- gem install rails --no-document; then
             echo "✓ Ruby on Rails installed successfully"
           else
             echo "⚠️  Warning: Rails installation failed, but Ruby is installed"
           fi
         else
           echo "❌ Error: Ruby installation failed"
-          echo "💡 Try manually: export RUBY_CONFIGURE_OPTS=\"--with-openssl-dir=\$(brew --prefix openssl@3)\""
+          echo "💡 Architecture: $CURRENT_ARCH (Rosetta: $ROSETTA_CHECK)"
+          echo "💡 Try manually in ARM64 shell: arch -arm64 zsh"
           echo "💡 Then run: mise use --global ruby@latest"
         fi
         ;;
