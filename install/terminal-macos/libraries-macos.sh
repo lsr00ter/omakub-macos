@@ -106,8 +106,10 @@ function install_macos_libraries() {
     # Optional: Install Rust if not present (some tools depend on it)
     if ! command -v rustc &> /dev/null; then
         echo "Installing Rust toolchain..."
-        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-        source "$HOME/.cargo/env"
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y || {
+            echo "✗ Failed to install Rust, continuing without it..."
+        }
+        source "$HOME/.cargo/env" 2>/dev/null || true
     fi
 
     echo "✓ Development libraries installed"

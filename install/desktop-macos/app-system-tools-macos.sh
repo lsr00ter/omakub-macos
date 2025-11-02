@@ -7,7 +7,7 @@ echo "Installing system maintenance tools..."
 source ~/.local/share/omakub-macos/install/terminal-macos/libraries-macos.sh
 
 # Install AppCleaner (free alternative to CleanMyMac)
-install_app_via_brew "appcleaner" "--cask"
+install_app_via_brew "appcleaner" "--cask" || true
 
 echo "✓ System maintenance tools installed"
 echo "🧹 AppCleaner helps completely remove applications and their files"

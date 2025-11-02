@@ -7,34 +7,31 @@ function configure_macos_settings() {
     osascript -e "tell application \"System Events\" to tell appearance preferences to set dark mode to true" 2>/dev/null || true
 
     # Configure dock
-    defaults write com.apple.dock autohide -bool true
-    defaults write com.apple.dock orientation left
-    defaults write com.apple.dock magnification -bool true
-    defaults write com.apple.dock tilesize -int 36
-    defaults write com.apple.dock largesize -int 48
-    defaults write com.apple.dock autohide-delay -float 0
-    defaults write com.apple.dock autohide-time-modifier -int 0
+    defaults write com.apple.dock autohide -bool true || true
+    defaults write com.apple.dock orientation left || true
+    defaults write com.apple.dock magnification -bool true || true
+    defaults write com.apple.dock tilesize -int 36 || true
+    defaults write com.apple.dock largesize -int 48 || true
+    defaults write com.apple.dock autohide-delay -float 0 || true
+    defaults write com.apple.dock autohide-time-modifier -int 0 || true
 
     # Configure finder
-    defaults write com.apple.finder ShowPathbar -bool true
-    defaults write com.apple.finder ShowStatusBar -bool true
-    defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
-    defaults write com.apple.finder "_FXSortFoldersFirst" -bool "true"
+    defaults write com.apple.finder ShowPathbar -bool true || true
+    defaults write com.apple.finder ShowStatusBar -bool true || true
+    defaults write com.apple.finder FXPreferredViewStyle -string "clmv" || true
+    defaults write com.apple.finder "_FXSortFoldersFirst" -bool "true" || true
 
     # Configure keyboard
-    defaults write NSGlobalDomain KeyRepeat -int 2
-    defaults write NSGlobalDomain InitialKeyRepeat -int 15
+    defaults write NSGlobalDomain KeyRepeat -int 2 || true
+    defaults write NSGlobalDomain InitialKeyRepeat -int 15 || true
 
     # Configure trackpad
-    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-    defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true || true
+    defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1 || true
 
     # Configure screenshots
-    defaults write com.apple.screencapture location -string "$HOME/Desktop"
-    defaults write com.apple.screencapture type -string "png"
-
-    # Configure Safari show full URL
-    defaults write com.apple.Safari "ShowFullURLInSmartSearchField" -bool "true"
+    defaults write com.apple.screencapture location -string "$HOME/Desktop" || true
+    defaults write com.apple.screencapture type -string "png" || true
 
     echo "✓ macOS system preferences configured"
 }
@@ -46,14 +43,14 @@ function set_macos_theme() {
 
     # Set accent color
     case "$theme_color" in
-        "blue") defaults write NSGlobalDomain AppleAccentColor -int 4 ;;
-        "purple") defaults write NSGlobalDomain AppleAccentColor -int 5 ;;
-        "pink") defaults write NSGlobalDomain AppleAccentColor -int 6 ;;
-        "red") defaults write NSGlobalDomain AppleAccentColor -int 0 ;;
-        "orange") defaults write NSGlobalDomain AppleAccentColor -int 1 ;;
-        "yellow") defaults write NSGlobalDomain AppleAccentColor -int 2 ;;
-        "green") defaults write NSGlobalDomain AppleAccentColor -int 3 ;;
-        *) defaults write NSGlobalDomain AppleAccentColor -int 4 ;;
+        "blue") defaults write NSGlobalDomain AppleAccentColor -int 4 || true ;;
+        "purple") defaults write NSGlobalDomain AppleAccentColor -int 5 || true ;;
+        "pink") defaults write NSGlobalDomain AppleAccentColor -int 6 || true ;;
+        "red") defaults write NSGlobalDomain AppleAccentColor -int 0 || true ;;
+        "orange") defaults write NSGlobalDomain AppleAccentColor -int 1 || true ;;
+        "yellow") defaults write NSGlobalDomain AppleAccentColor -int 2 || true ;;
+        "green") defaults write NSGlobalDomain AppleAccentColor -int 3 || true ;;
+        *) defaults write NSGlobalDomain AppleAccentColor -int 4 || true ;;
     esac
 
     echo "✓ Theme color set to $theme_color"

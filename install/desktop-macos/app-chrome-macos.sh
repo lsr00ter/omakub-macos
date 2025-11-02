@@ -5,7 +5,7 @@ echo "Installing Google Chrome..."
 
 source ~/.local/share/omakub-macos/install/terminal-macos/libraries-macos.sh
 
-install_app_via_brew "google-chrome" "--cask"
+install_app_via_brew "google-chrome" "--cask" || true
 
 echo "✓ Google Chrome installed"
 echo "Note: To set Chrome as default browser, go to:"

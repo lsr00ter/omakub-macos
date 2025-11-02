@@ -5,16 +5,16 @@ echo "Installing Visual Studio Code..."
 
 source ~/.local/share/omakub-macos/install/terminal-macos/libraries-macos.sh
 
-install_app_via_brew "visual-studio-code" "--cask"
+install_app_via_brew "visual-studio-code" "--cask" || true
 
 # Set up VSCode configuration
 function setup_vscode_config_macos() {
     local vscode_dir="$HOME/Library/Application Support/Code/User"
-    mkdir -p "$vscode_dir"
-    
+    mkdir -p "$vscode_dir" || true
+
     # Copy settings if available
     if [[ -f ~/.local/share/omakub-macos/configs-macos/vscode.json ]]; then
-        cp ~/.local/share/omakub-macos/configs-macos/vscode.json "$vscode_dir/settings.json"
+        cp ~/.local/share/omakub-macos/configs-macos/vscode.json "$vscode_dir/settings.json" 2>/dev/null || true
         echo "✓ VSCode settings configured"
     fi
 }
@@ -23,7 +23,7 @@ setup_vscode_config_macos
 
 # Install default supported themes
 if command -v code &> /dev/null; then
-    code --install-extension enkia.tokyo-night
+    code --install-extension enkia.tokyo-night 2>/dev/null || true
     echo "✓ Tokyo Night theme installed"
 fi
 

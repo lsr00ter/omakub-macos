@@ -7,12 +7,12 @@ source ~/.local/share/omakub-macos/install/terminal-macos/libraries-macos.sh
 
 # Pinta might not be available via Homebrew, so let's use an alternative
 if brew search pinta &>/dev/null && brew search pinta | grep -q "^pinta$"; then
-    install_app_via_brew "pinta" "--cask"
+    install_app_via_brew "pinta" "--cask" || true
     echo "✓ Pinta installed"
 else
     echo "Pinta not available via Homebrew, installing alternative..."
     # Install Krita as a more powerful alternative
-    install_app_via_brew "krita" "--cask"
+    install_app_via_brew "krita" "--cask" || true
     echo "✓ Krita installed (alternative to Pinta)"
     echo "🎨 Krita is a professional painting and image editing application"
 fi

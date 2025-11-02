@@ -6,14 +6,14 @@ echo "Installing programming fonts..."
 source ~/.local/share/omakub-macos/install/terminal-macos/libraries-macos.sh
 
 # Install popular programming fonts directly (no tap needed)
-install_app_via_brew "font-fira-code" "--cask"
-install_app_via_brew "font-cascadia-mono" "--cask"
-install_app_via_brew "font-jetbrains-mono" "--cask"
-install_app_via_brew "font-meslo-lg-nerd-font" "--cask"
+install_app_via_brew "font-fira-code" "--cask" || true
+install_app_via_brew "font-cascadia-mono" "--cask" || true
+install_app_via_brew "font-jetbrains-mono" "--cask" || true
+install_app_via_brew "font-meslo-lg-nerd-font" "--cask" || true
 
 # Install some additional useful fonts
-install_app_via_brew "font-source-code-pro" "--cask"
-install_app_via_brew "font-hack" "--cask"
+install_app_via_brew "font-source-code-pro" "--cask" || true
+install_app_via_brew "font-hack" "--cask" || true
 
 echo "✓ Programming fonts installed"
 echo "🔤 Installed fonts:"

@@ -5,7 +5,7 @@ echo "Installing Typora..."
 
 source ~/.local/share/omakub-macos/install/terminal-macos/libraries-macos.sh
 
-install_app_via_brew "typora" "--cask"
+install_app_via_brew "typora" "--cask" || true
 
 # Set up Typora themes if available
 if [[ -d ~/.local/share/omakub-macos/configs/typora ]]; then

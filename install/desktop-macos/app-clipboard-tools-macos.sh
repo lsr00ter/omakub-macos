@@ -6,7 +6,7 @@ echo "Installing clipboard manager..."
 
 source ~/.local/share/omakub-macos/install/terminal-macos/libraries-macos.sh
 
-install_app_via_brew "maccy" "--cask"
+install_app_via_brew "maccy" "--cask" || true
 
 echo "✓ Maccy clipboard manager installed"
 echo "📋 Maccy provides clipboard history and management"

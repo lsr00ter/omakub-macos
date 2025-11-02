@@ -42,10 +42,10 @@ function cleanup_macos_dock() {
             # Run dockutil as the dock owner to avoid permission issues
             if [[ "$dock_user" != "$(whoami)" ]] && [[ -n "$SUDO_USER" ]]; then
                 # Running with sudo, switch to the actual user
-                sudo -u "$dock_user" dockutil --remove "$app" --no-restart 2>/dev/null || echo "    $app not found in dock"
+                sudo -u "$dock_user" dockutil --remove "$app" --no-restart 2>/dev/null || true
             else
                 # Running as the correct user already
-                dockutil --remove "$app" --no-restart 2>/dev/null || echo "    $app not found in dock"
+                dockutil --remove "$app" --no-restart 2>/dev/null || true
             fi
         else
             # Fallback: remove using defaults (more complex but works without dockutil)
@@ -63,7 +63,7 @@ function remove_app_from_dock_defaults() {
     # if it's not available
     if ! command -v dockutil &> /dev/null; then
         install_dockutil
-        dockutil --remove "$app_name" --no-restart 2>/dev/null || echo "    $app_name not found in dock"
+        dockutil --remove "$app_name" --no-restart 2>/dev/null || true
     fi
 }
 

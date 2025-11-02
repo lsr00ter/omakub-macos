@@ -63,8 +63,8 @@ app2dock_macos() {
 
   if [ -d "$APP_PATH" ]; then
     # Add to Dock using defaults
-    defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$APP_PATH</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
-    killall Dock
+    defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$APP_PATH</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>" || true
+    killall Dock 2>/dev/null || true
     echo "✓ Added $APP_NAME to Dock"
   else
     echo "❌ Application $APP_PATH not found"

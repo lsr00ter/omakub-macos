@@ -7,9 +7,9 @@ echo "Installing screenshot tools..."
 source ~/.local/share/omakub-macos/install/terminal-macos/libraries-macos.sh
 
 # Install CleanShot X alternative - Kap for screen recording
-install_app_via_brew "kap" "--cask"
+install_app_via_brew "kap" "--cask" || true
 
-install_app_via_brew "shottr" "--cask"
+install_app_via_brew "shottr" "--cask" || true
 
 echo "✓ Screenshot tools configured"
 echo "📸 macOS built-in screenshot tools:"

@@ -10,8 +10,11 @@ install_app_via_brew "emacs" "--cask"
 
 # Clone Doom Emacs
 if [ ! -d ~/.config/emacs ]; then
-    git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
-    ~/.config/emacs/bin/doom install
+    git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs || {
+        echo "✗ Failed to clone Doom Emacs repository"
+        return 1
+    }
+    ~/.config/emacs/bin/doom install || true
 fi
 
 echo "✓ Doom Emacs installed"

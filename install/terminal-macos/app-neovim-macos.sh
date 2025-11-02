@@ -12,7 +12,10 @@ safe_brew install luarocks tree-sitter
 # LazyVim setup (same as Ubuntu)
 if [ ! -d "$HOME/.config/nvim" ]; then
     echo "Setting up LazyVim configuration..."
-    git clone https://github.com/LazyVim/starter ~/.config/nvim
+    git clone https://github.com/LazyVim/starter ~/.config/nvim || {
+        echo "✗ Failed to clone LazyVim starter"
+        return 1
+    }
     rm -rf ~/.config/nvim/.git
     
     # Copy theme and configs (these would need to be created)
