@@ -2,6 +2,9 @@
 
 This is the macOS adaptation of Omakub - a shell script-based setup tool that transforms a fresh macOS installation into a fully-configured development environment.
 
+> [!WARNING]
+> **HEAVILY IN DEVELOPMENT** - This project is under active development and may contain bugs, incomplete features, or breaking changes. Use at your own risk and expect frequent updates. Not recommended for production environments.
+
 <img width="3840" height="2160" alt="screenshot" src="https://github.com/user-attachments/assets/fe645017-8d26-411e-a6f9-d97b6ada04d0" />
 
 ## Quick Start
@@ -54,7 +57,8 @@ source ~/.local/share/omakub-macos/bin/omakub-sub-macos/font.sh
 
 - **Google Chrome** - Web browser
 - **Visual Studio Code** - Code editor
-- **Optional apps**: 1Password, Spotify, Zoom, Dropbox, Rectangle, Alfred, iTerm2
+- **Optional desktop apps**: 1Password, Alfred, ASDControl, Audacity, Brave, Cursor, Doom Emacs, Dropbox, GIMP, iTerm2, Minecraft, OBS Studio, Parallels, Rectangle, RetroArch, RubyMine, Signal, Spotify, Steam, Tailscale, VirtualBox, Windows (VM), Windsurf, Zed, Zoom
+- **Optional terminal apps**: Ollama
 
 ### Development Tools
 

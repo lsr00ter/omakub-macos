@@ -5,8 +5,10 @@ echo "Setting up zsh shell configuration for Omakub macOS..."
 
 # Backup existing .zshrc if it exists
 if [[ -f "$HOME/.zshrc" ]]; then
-    echo "Backing up existing .zshrc to .zshrc.backup"
-    cp "$HOME/.zshrc" "$HOME/.zshrc.backup"
+    BACKUP_TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+    BACKUP_FILE="$HOME/.zshrc.backup.$BACKUP_TIMESTAMP"
+    echo "Backing up existing .zshrc to .zshrc.backup.$BACKUP_TIMESTAMP"
+    cp "$HOME/.zshrc" "$BACKUP_FILE"
 fi
 
 # Create new .zshrc that sources Omakub configuration
